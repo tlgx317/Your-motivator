@@ -1,0 +1,379 @@
+/* style.css */
+
+/* Basic Reset & Defaults */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+    overscroll-behavior: contain; /* Prevent pull-to-refresh */
+    height: 100vh; /* Ensure body takes full viewport height */
+    overflow: hidden; /* Prevent body scroll when drawer is open */
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 100%; /* Ensure it doesn't exceed screen width */
+    overflow: hidden; /* Contain everything */
+}
+
+/* Header */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    position: sticky; /* Make header sticky */
+    top: 0;
+}
+
+.app-title {
+    font-size: 1.4em;
+    font-weight: 600;
+}
+
+.menu-button, .close-drawer-button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.6em;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.close-drawer-button {
+     font-size: 2em;
+     line-height: 1;
+     padding: 0 10px;
+}
+
+
+/* Drawer Navigation */
+.drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+}
+
+.drawer.open {
+    transform: translateX(0);
+}
+
+.drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #7f5bbe; /* Drawer header color */
+    color: #fff;
+}
+.drawer-header h2 {
+    font-size: 1.3em;
+    margin: 0;
+}
+
+
+.drawer ul {
+    list-style: none;
+    padding: 15px 0;
+    flex-grow: 1; /* Take remaining space */
+}
+
+.drawer ul li a {
+    display: flex; /* Use flex for icon and text alignment */
+    align-items: center;
+    padding: 15px 25px;
+    color: #555;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.drawer ul li a i {
+    margin-right: 15px; /* Space between icon and text */
+    width: 20px; /* Fixed width for alignment */
+    text-align: center;
+    color: #7f5bbe; /* Icon color */
+}
+
+
+.drawer ul li a:hover,
+.drawer ul li a.active {
+    background-color: #f0f0f0;
+    color: #7f5bbe; /* Highlight color */
+}
+.drawer ul li a.active i {
+     color: #7f5bbe;
+}
+
+.developer-credit {
+    padding: 20px;
+    text-align: center;
+    font-size: 0.9em;
+    color: #888;
+    border-top: 1px solid #eee;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    z-index: 150;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Main Content & Pages */
+.content {
+    flex-grow: 1; /* Take remaining vertical space */
+    padding: 25px;
+    overflow-y: auto; /* Allow content scrolling */
+    background-color: #f4f7f6; /* Lighter background for content */
+}
+
+.page {
+    display: none; /* Hide pages by default */
+    animation: fadeIn 0.5s ease; /* Simple fade-in */
+}
+
+.page.active {
+    display: block; /* Show active page */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+/* Quote Container Styling */
+.quote-container {
+    background-color: #fff;
+    padding: 30px 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    margin-top: 10vh; /* Push down from header */
+    position: relative; /* For absolute positioning of icons/indicators if needed */
+}
+
+.quote-text {
+    font-size: 1.5em; /* Larger quote text */
+    font-weight: 300;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 15px;
+    min-height: 60px; /* Prevent layout jumps */
+}
+
+.quote-author {
+    font-size: 1.1em;
+    font-style: italic;
+    color: #777;
+    margin-bottom: 25px;
+    min-height: 20px; /* Prevent layout jumps */
+}
+.quote-author::before {
+    content: "— ";
+}
+
+.quote-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Space between buttons */
+    flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+}
+
+.action-button {
+    background: linear-gradient(135deg, #8e6de4 0%, #6a4ac1 100%);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px; /* Rounded buttons */
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 3px 8px rgba(118, 75, 162, 0.3);
+    display: inline-flex; /* Align icon and text */
+    align-items: center;
+    justify-content: center;
+}
+.action-button i {
+    font-size: 1.1em; /* Make icons slightly larger */
+}
+/* Adjust padding if only icon */
+#favoriteButton, #fetchApiQuoteButton {
+    padding: 10px 15px;
+}
+#fetchApiQuoteButton i {
+     margin-right: 0; /* No margin if only icon */
+}
+
+
+.action-button:hover {
+    background: linear-gradient(135deg, #7f5bbe 0%, #5e3aa0 100%);
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+.action-button:active {
+     transform: translateY(0);
+     box-shadow: 0 1px 4px rgba(118, 75, 162, 0.4);
+}
+
+/* Favorite button specific styles */
+#favoriteButton.favorited {
+    background: #e74c3c; /* Red when favorited */
+    box-shadow: 0 3px 8px rgba(231, 76, 60, 0.3);
+}
+#favoriteButton.favorited:hover {
+     background: #c0392b;
+}
+#favoriteButton.favorited i::before {
+    content: "\f004"; /* FontAwesome solid heart unicode */
+    font-weight: 900; /* Ensure solid icon is used */
+}
+
+/* Loading/Error Indicators */
+.loading, .error {
+    margin-top: 15px;
+    font-size: 0.9em;
+}
+.loading { color: #7f5bbe; }
+.error { color: #e74c3c; }
+
+/* Favorites Page Styling */
+.favorites-list .favorite-item {
+    background-color: #fff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items to top */
+}
+
+.favorites-list .quote-content {
+    flex-grow: 1;
+    margin-right: 15px;
+}
+
+.favorites-list .quote-content p {
+    margin-bottom: 5px;
+    line-height: 1.5;
+}
+.favorites-list .quote-content .fav-quote-text {
+    font-size: 1.1em;
+    color: #333;
+}
+.favorites-list .quote-content .fav-quote-author {
+    font-size: 0.9em;
+    font-style: italic;
+    color: #666;
+}
+.favorites-list .quote-content .fav-quote-author::before {
+     content: "— ";
+}
+
+.remove-favorite-button {
+    background: #f1f1f1;
+    border: 1px solid #ddd;
+    color: #e74c3c; /* Red icon */
+    border-radius: 50%; /* Circular */
+    width: 35px;
+    height: 35px;
+    font-size: 1em;
+    cursor: pointer;
+    flex-shrink: 0; /* Prevent shrinking */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.remove-favorite-button:hover {
+    background-color: #e74c3c;
+    color: #fff;
+    border-color: #e74c3c;
+}
+.favorites-list > p { /* Style the "no favorites" message */
+    color: #777;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* About/Privacy Page Styling */
+#about-page h2, #privacy-page h2 {
+    margin-bottom: 15px;
+    color: #7f5bbe;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+}
+#about-page p, #privacy-page p,
+#about-page ul, #privacy-page ul {
+    margin-bottom: 15px;
+    line-height: 1.7;
+    color: #555;
+}
+#about-page ul, #privacy-page ul {
+    margin-left: 25px;
+}
+#about-page li, #privacy-page li {
+    margin-bottom: 8px;
+}
+#about-page strong, #privacy-page strong {
+    color: #333;
+    font-weight: 600;
+}
+
+
+/* Responsive Adjustments (Optional - Basic) */
+@media (max-width: 360px) {
+    .quote-text {
+        font-size: 1.3em;
+    }
+    .quote-author {
+        font-size: 1em;
+    }
+    .action-button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+    #favoriteButton, #fetchApiQuoteButton {
+        padding: 8px 12px;
+    }
+    .content {
+        padding: 15px;
+    }
+    .drawer {
+        width: 250px; /* Slightly narrower drawer */
+    }
+}
