@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Your Motivator</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts (Optional) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons (Optional) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Removed the ad script that was here -->
+</head>
+<body>
+
+    <div class="app-container">
+
+        <!-- Header -->
+        <header class="app-header">
+            <button class="menu-button" id="menuButton" aria-label="Open Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h1 class="app-title">Your Motivator</h1>
+            <div></div> <!-- Placeholder for potential right-side icons -->
+        </header>
+
+        <!-- Drawer Navigation -->
+        <nav class="drawer" id="drawerNav">
+            <div class="drawer-header">
+                 <h2>Menu</h2>
+                 <button class="close-drawer-button" id="closeDrawerButton" aria-label="Close Menu">×</button>
+            </div>
+            <ul>
+                <li><a href="#home" class="nav-link active" data-page="home-page"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#favorites" class="nav-link" data-page="favorites-page"><i class="fas fa-heart"></i> Favorites</a></li>
+                <li><a href="#about" class="nav-link" data-page="about-page"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="#privacy" class="nav-link" data-page="privacy-page"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+            </ul>
+            <div class="developer-credit">
+                App Develop by: tlgx
+            </div>
+        </nav>
+        <div class="overlay" id="overlay"></div>
+
+        <!-- Main Content Area -->
+        <main class="content">
+
+            <!-- Home Page -->
+            <section id="home-page" class="page active">
+                <div class="quote-container">
+                    <p class="quote-text" id="quoteText">Loading your daily motivation...</p>
+                    <p class="quote-author" id="quoteAuthor"></p>
+                    <div class="quote-actions">
+                         <button id="favoriteButton" class="action-button" aria-label="Add to Favorites">
+                             <i class="far fa-heart"></i> <!-- Use far for outline, fas for solid -->
+                         </button>
+                         <button id="nextQuoteButton" class="action-button">
+                             Next Quote
+                         </button>
+                         <button id="fetchApiQuoteButton" class="action-button">
+                             <i class="fas fa-globe"></i> Get Online
+                         </button>
+                    </div>
+                     <p id="loadingIndicator" class="loading" style="display: none;">Fetching quote...</p>
+                     <p id="errorIndicator" class="error" style="display: none;">Could not fetch quote. Check connection.</p>
+                </div>
+            </section>
+
+            <!-- Favorites Page -->
+            <section id="favorites-page" class="page">
+                <h2>Favorite Quotes</h2>
+                <div id="favoritesList" class="favorites-list">
+                    <!-- Favorite quotes will be loaded here by JS -->
+                     <p>You haven't favorited any quotes yet.</p>
+                </div>
+            </section>
+
+            <!-- About Page -->
+            <section id="about-page" class="page">
+                <h2>About Your Motivator</h2>
+                <p>Your Motivator is a simple app designed to provide you with daily doses of inspiration and motivation.</p>
+                <p>Features:</p>
+                <ul>
+                    <li>Display motivational quotes.</li>
+                    <li>Fetch fresh quotes from the internet.</li>
+                    <li>Save your favorite quotes for later reflection.</li>
+                    <li>Easy navigation via a side drawer.</li>
+                </ul>
+                <p>We hope this app helps brighten your day!</p>
+                 <br>
+                 <p><strong>App Develop by: tlgx</strong></p>
+            </section>
+
+            <!-- Privacy Policy Page (Simplified) -->
+            <section id="privacy-page" class="page">
+                <h2>Privacy Policy</h2>
+
+                <!-- Only include the link -->
+                <p>Please review our full Privacy Policy for detailed information on how we handle data:
+                    <br><br> {/* Added line breaks for spacing */}
+                    <a href="https://www.freeprivacypolicy.com/live/c5264791-5dec-4f6d-84ef-535f2348900b" target="_blank" rel="noopener noreferrer" style="font-weight: bold; text-decoration: underline;">
+                        View Full Privacy Policy Here
+                    </a>
+                </p>
+
+                <br>
+                <p style="margin-top: 30px;"> {/* Added margin for spacing */}
+                    <strong>App Develop by: tlgx</strong>
+                </p>
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="quotes.js"></script> <!-- Load local quotes first -->
+    <script src="script.js"></script>
+
+    <!-- The script tag for static.app was here and has been removed -->
+
+</body>
+</html>
